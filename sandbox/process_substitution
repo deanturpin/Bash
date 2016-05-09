@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cat /proc/cpuinfo | tee >(grep cpu > cpu.txt) >(grep vendor > vendor.txt) 
+
+cat cpu.txt
+cat vendor.txt
