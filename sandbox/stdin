@@ -3,6 +3,6 @@
 # $ ./stdin < mapfile
 # lines on stdin 22
 
-mapfile
+mapfile < /dev/stdin
 
 echo lines on stdin ${#MAPFILE[*]}

@@ -1,6 +1,11 @@
 #!/bin/bash
 
+# Send all output to file
+exec > >(tee blah.txt)
+
+# Send to different files
 cat /proc/cpuinfo | tee >(grep cpu > cpu.txt) >(grep vendor > vendor.txt) 
 
 cat cpu.txt
 cat vendor.txt
+

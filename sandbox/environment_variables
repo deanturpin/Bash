@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Current dir
+echo ~+
+
+# Previous dir
+echo ~-
+
+# Random numbers
+echo $RANDOM

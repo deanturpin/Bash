@@ -1,5 +1,4 @@
-# Random numbers
-echo $RANDOM
+#!/bin/bash
 
 # Leading zeros
 echo {000..009}
