@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Send all stderr to stdout
+# exec 2>&1
+
+# Write to stderr
+echo this is stdout
+echo this is blah stderr >&2
+
+# Send stdout to null
+# ./redirection 1> /dev/null 
+
+# Send stderr to null
+# ./redirection 2> /dev/null 
+
+# Send both to null
+# ./redirection &> /dev/null 
+
+# Pipes
+mkfifo /tmp/blah
+cat /tmp/blah&
+echo blah > /tmp/blah
+rm /tmp/blah
