@@ -22,6 +22,10 @@ echo ${car-'variable not set'}
 echo -e \"${bar+'variable is set'}\"
 echo -e \"${var+'variable is set'}\"
 
+# Print date if variable set
+printdate=
+echo ${printdate-$(date)}
+
 # Length of variable
 echo ${#var}
 
