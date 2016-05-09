@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# In an anonymous heredoc
+: <<!
+don't do this bit
+!
+
+# While true
+while :; do
+	echo forever
+	break
+done
