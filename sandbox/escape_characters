@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Escaping hash - vi syntax highlighting doesn't like it, but...
+line='10.11.10.3 three # alias'
+[[ $line =~ [#].* ]] && echo \"$BASH_REMATCH\" || echo no match
