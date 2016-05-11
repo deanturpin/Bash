@@ -1,0 +1,15 @@
+#!/bin/bash
+
+declare -A nice
+
+nice[one]="one"
+nice[two]="one two"
+nice[three]="one two three"
+
+# Dump the keys
+for n in ${!nice[*]}; do
+	echo $n
+	for i in ${nice[$n]}; do
+		echo -e "\t$i"
+	done
+done
