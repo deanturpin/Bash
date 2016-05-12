@@ -39,11 +39,12 @@ declare -i init=1
 # Create histogram - note type is a string
 for b in ${blah[*]}; do
 
-	# Initialise element if it doesn't exist
-	if [[ ${histogram_int[$b]} ]]; then
-		histogram_int[$b]=$(( histogram_int[$b] + 1 ))
-	else
+	# If the key doesn't exist initialise it with an integer
+	if [[ ! ${histogram_int[$b]} ]]; then
 		histogram_int[$b]=$init
+	else
+		# Otherwise increment the existing value
+		histogram_int[$b]=$(( histogram_int[$b] + 1 ))
 	fi
 done
 
