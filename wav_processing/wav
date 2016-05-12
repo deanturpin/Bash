@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Fetch some samples
+samples=($(cat black.wav | xxd -cols 2 -g 2 -bits -s 44 -l 40 -p))
+
+echo read ${#samples[*]} samples
