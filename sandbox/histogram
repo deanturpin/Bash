@@ -4,21 +4,22 @@ blah=(
 one two three four four four five one one two
 one two three four one two three four four four five one one two
 one two three four one two three four four four five one one two
-one two three four 
-one two three four 
-one two three four 
-one two three four 
 )
+# one two three four 
+# one two three four 
+# one two three four 
+# one two three four 
+# )
 
 declare -A histogram
 
 # Create histogram - note type is a string
 for b in ${blah[*]}; do
-	# echo $b
 	histogram[$b]+=-
 done
 
 # Dump histogram
+echo histogram of strings
 for key in ${!histogram[*]}; do
 	echo -e $key\\t${histogram[$key]}\|
 done
@@ -31,3 +32,24 @@ done
 # two	------------|
 # three	---------|
 
+# But how about a histogram of integers?
+echo
+echo histogram of integers
+declare -A histogram_int
+declare -i init=1
+
+# Create histogram - note type is a string
+for b in ${blah[*]}; do
+
+	# Initialise element if it doesn't exist
+	if [[ ${histogram_int[$b]} ]]; then
+		histogram_int[$b]=$(( histogram_int[$b] + 1 ))
+	else
+		histogram_int[$b]=$init
+	fi
+done
+
+# Dump histogram
+for key in ${!histogram_int[*]}; do
+	echo -e $key\\t${histogram_int[$key]}
+done
