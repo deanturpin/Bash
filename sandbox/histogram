@@ -1,15 +1,13 @@
 #!/bin/bash
 
 blah=(
-one two three four four four five one one two
-one two three four one two three four four four five one one two
-one two three four one two three four four four five one one two
+one two three four four four five one one two one two three four one two three
+four four four five one one two one two three four one two three four four four
+five one one two one two three four one two three four one two three four one
+two three four one two three four four four five one one two one two three four
+one two three four four four five one one two one two three four one two three
+four one five six seven eight eight eight eight eight eight nine ten
 )
-# one two three four 
-# one two three four 
-# one two three four 
-# one two three four 
-# )
 
 declare -A histogram
 
