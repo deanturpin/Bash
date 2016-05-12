@@ -1,19 +1,18 @@
 #!/bin/bash
 
-[[ $# == 1 ]] && count=$1 || count=500
+[[ $# == 1 ]] && count=$1 || count=20
 
 # Fetch some samples
-samples=($(cat black.wav | xxd -cols 2 -g 2 -bits -s 44 -l $count -p))
+nibbles=40
+readarray samples < <(cat black.wav | xxd -cols $nibbles -g $nibbles -l $(( nibbles * count )))
 
-echo read ${#samples[*]} samples
+echo ${#samples[*]} samples
 
-declare -A histogram
+for (( i=0; i<${#samples[*]}; ++i )); do
+	# Extract only the hex
+	[[ ${samples[i]} =~ \ ([[:xdigit:]]+)\  ]] && extraction=${BASH_REMATCH[1]}
 
-for s in ${samples[*]}; do
-	histogram[$s]+=-
-done
-
-# Dump histogram
-for key in ${!histogram[*]}; do
-	echo -e $key\\t${histogram[$key]}\|
+	echo -n $extraction\ 
+	extraction=${extraction:4:15}
+	echo $(( 16#$extraction ))
 done
