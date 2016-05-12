@@ -1,0 +1,33 @@
+#!/bin/bash
+
+blah=(
+one two three four four four five one one two
+one two three four one two three four four four five one one two
+one two three four one two three four four four five one one two
+one two three four 
+one two three four 
+one two three four 
+one two three four 
+)
+
+declare -A histogram
+
+# Create histogram - note type is a string
+for b in ${blah[*]}; do
+	# echo $b
+	histogram[$b]+=-
+done
+
+# Dump histogram
+for key in ${!histogram[*]}; do
+	echo -e $key\\t${histogram[$key]}\|
+done
+
+# Looks cool as it is!
+
+# four	---------------|
+# one	---------------|
+# five	---|
+# two	------------|
+# three	---------|
+

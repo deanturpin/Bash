@@ -23,3 +23,7 @@ for (( i = 0; i < ${#array[*]}; ++i )); do
 	echo ${array[i]}
 done
 
+# Delimit on dot
+# http://mywiki.wooledge.org/BashGuide/Arrays
+IFS=. read -a ip_elements <<< "127.0.0.1"
+echo ${ip_elements[*]}
