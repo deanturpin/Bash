@@ -3,10 +3,9 @@
 # Get list of scripts
 mapfile scripts < <(ls *)
 
-# Get the daily index
-declare -i index=$RANDOM
-# index=$(( $(date +%d) * $(date +%m) * $(date +%y) ))
+# Calculate an index for the day
+i=$(( ($(date +%d) * $(date +%m) * $(date +%y)) % ${#scripts[*]} ))
 
-echo total scripts ${#scripts[*]} 
-echo random index $index
-echo daily index $(( ${#scripts[*]} % index ))
+script_of_the_day=${scripts[$i]}
+
+cat $script_of_the_day
