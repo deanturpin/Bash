@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Get list of scripts
+mapfile scripts < <(ls *)
+
+# Get the daily index
+declare -i index=$RANDOM
+# index=$(( $(date +%d) * $(date +%m) * $(date +%y) ))
+
+echo total scripts ${#scripts[*]} 
+echo random index $index
+echo daily index $(( ${#scripts[*]} % index ))

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Random numbers
+echo $RANDOM

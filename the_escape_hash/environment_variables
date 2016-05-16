@@ -6,7 +6,4 @@ echo ~+
 # Previous dir
 echo ~-
 
-# Random numbers
-echo $RANDOM
-
 echo bash version $BASH_VERSION
