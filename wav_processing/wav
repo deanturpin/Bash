@@ -16,4 +16,4 @@ for s in ${samples[*]}; do
 	# Shift so all values are positive
 	echo -e $i\\t$(( 16#$s + 16#ffff ))
 	(( ++i ))
-done | graph -T png > wav.png
+done | graph -T png
