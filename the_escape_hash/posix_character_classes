@@ -1,0 +1,31 @@
+#!/bin/bash
+
+test='234abc234_   hello'
+
+# alpha - alphabetic
+[[ $test =~ [[:alpha:]]+ ]] && echo $BASH_REMATCH || echo no match
+
+# alnum - alphanumeric
+[[ $test =~ [[:alnum:]]+ ]] && echo $BASH_REMATCH || echo no match
+
+# ascii - ASCII
+[[ $test =~ [[:ascii:]]+ ]] && echo $BASH_REMATCH || echo no match
+
+# blank - space and tab
+[[ $test =~ [[:blank:]]+ ]] && echo $BASH_REMATCH || echo no match
+
+# space - all whitespace
+[[ $test =~ [[:ascii:]]+ ]] && echo $BASH_REMATCH || echo no match
+
+# cntrl - control characters
+
+# digit - digits
+# xdigit - hexadecimal digits
+
+# graph - anything except spaces and control characters
+# lower - lowercase
+# upper - uppdercase
+
+# print - visible characters
+# punct - punctuation and symbols
+# word - letters, numbers and underscores
