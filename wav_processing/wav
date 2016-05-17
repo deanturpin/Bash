@@ -4,15 +4,12 @@
 
 # Fetch some samples
 nibbles=40
-readarray samples < <(cat black.wav | xxd -cols $nibbles -g $nibbles -l $(( nibbles * count )))
+readarray samples < <(cat black.wav | xxd -cols $nibbles -p -l $(( nibbles * count )))
 
 echo ${#samples[*]} samples
 
-for (( i=0; i<${#samples[*]}; ++i )); do
-	# Extract only the hex
-	[[ ${samples[i]} =~ \ ([[:xdigit:]]+)\  ]] && extraction=${BASH_REMATCH[1]}
-
-	echo -n $extraction\ 
-	extraction=${extraction:4:15}
-	echo $(( 16#$extraction ))
+# Loop through samples
+for s in ${samples[*]}; do
+	s=${s:0:6}
+	printf %x\\n $(( 16#$s ))
 done
