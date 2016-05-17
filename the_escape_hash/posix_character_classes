@@ -1,25 +1,33 @@
 #!/bin/bash
 
-test='234abc234_   hello'
+test='234abc234_ h___*&^    ello_élève ʘ‿ʘ'
 
-# alpha - alphabetic
-[[ $test =~ [[:alpha:]]+ ]] && echo $BASH_REMATCH || echo no match
+function test_posix {
+	class=$1
+	echo -en $class\\t
+	[[ $test =~ ${class}+ ]] && echo \"$BASH_REMATCH\" || echo no match
+}
 
-# alnum - alphanumeric
-[[ $test =~ [[:alnum:]]+ ]] && echo $BASH_REMATCH || echo no match
+# alphabetic
+test_posix '[[:alpha:]]'
 
-# ascii - ASCII
-[[ $test =~ [[:ascii:]]+ ]] && echo $BASH_REMATCH || echo no match
+# alphanumeric
+test_posix '[[:alnum:]]'
 
-# blank - space and tab
-[[ $test =~ [[:blank:]]+ ]] && echo $BASH_REMATCH || echo no match
+# ASCII
+test_posix '[[:ascii:]]'
+
+# space and tab
+test_posix '[[:blank:]]'
 
 # space - all whitespace
-[[ $test =~ [[:ascii:]]+ ]] && echo $BASH_REMATCH || echo no match
+test_posix '[[:space:]]'
 
 # cntrl - control characters
 
 # digit - digits
+test_posix  '[[:digits:]]'
+
 # xdigit - hexadecimal digits
 
 # graph - anything except spaces and control characters
