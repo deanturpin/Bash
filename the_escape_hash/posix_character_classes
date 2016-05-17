@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# The test string
+readonly test='234abc234_ h___*&^    ello_élève ʘ‿ʘ'
+
 # Array of all character classes
 posix_character_classes=(
 alpha	# alphabetic
@@ -17,9 +20,6 @@ print	# visible characters
 punct	# punctuation and symbols
 word	# letters, numbers and underscores
 )
-
-# The test string
-readonly test='234abc234_ h___*&^    ello_élève ʘ‿ʘ'
 
 # Loop through array of classes
 for class in ${posix_character_classes[*]}; do
