@@ -1,15 +1,19 @@
 #!/bin/bash
 
-[[ $# == 1 ]] && count=$1 || count=20
+[[ $# == 1 ]] && count=$1 || count=750
 
 # Fetch some samples
-nibbles=40
-readarray samples < <(cat black.wav | xxd -cols $nibbles -p -l $(( nibbles * count )))
-
-echo ${#samples[*]} samples
+nibbles=8
+readarray samples < <(xxd -cols $nibbles -plain -s 42 -len $(( nibbles * count )))
 
 # Loop through samples
+i=0
 for s in ${samples[*]}; do
-	s=${s:0:6}
-	printf %x\\n $(( 16#$s ))
-done
+
+	# Extract left channel only
+	s=${s:0:4}
+
+	# Shift so all values are positive
+	echo -e $i\\t$(( 16#$s + 16#ffff ))
+	(( ++i ))
+done | graph -T png > wav.png
