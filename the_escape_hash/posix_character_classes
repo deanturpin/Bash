@@ -1,39 +1,35 @@
 #!/bin/bash
 
+# Array of all character classes
+posix_character_classes=(
+'[[:alpha:]]'	# alphabetic
+'[[:alnum:]]'	# alphanumeric
+'[[:ascii:]]'	# ascii
+'[[:blank:]]'	# space and tab
+'[[:space:]]'	# all whitespace
+'[[:cntrl:]]'	# control characters
+'[[:digits:]]'	# digits
+'[[:xdigit:]]'	# hexadecimal digits
+'[[:graph:]]'	# anything except spaces and control characters
+'[[:lower:]]'	# lowercase
+'[[:upper:]]'	# uppdercase
+'[[:print:]]'	# visible characters
+'[[:punct:]]'	# punctuation and symbols
+'[[:word:]]'	# letters, numbers and underscores
+)
+
+# The test string
 test='234abc234_ h___*&^    ello_élève ʘ‿ʘ'
 
-function test_posix {
-	class=$1
+# Loop through array of classes
+for class in ${posix_character_classes[*]}; do
+
+	# Print the class
 	echo -en $class\\t
+
+	# Print the regular expression match
 	[[ $test =~ ${class}+ ]] && echo \"$BASH_REMATCH\" || echo no match
-}
+done
 
-# alphabetic
-test_posix '[[:alpha:]]'
 
-# alphanumeric
-test_posix '[[:alnum:]]'
 
-# ASCII
-test_posix '[[:ascii:]]'
-
-# space and tab
-test_posix '[[:blank:]]'
-
-# space - all whitespace
-test_posix '[[:space:]]'
-
-# cntrl - control characters
-
-# digit - digits
-test_posix  '[[:digits:]]'
-
-# xdigit - hexadecimal digits
-
-# graph - anything except spaces and control characters
-# lower - lowercase
-# upper - uppdercase
-
-# print - visible characters
-# punct - punctuation and symbols
-# word - letters, numbers and underscores
