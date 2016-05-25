@@ -1,7 +1,7 @@
 Note: I haven't actually tried this on a webserver! (Until tomorrow...)
 
 Simple bash CGI script to ping an IP. To be installed in the CGI bin on your
-webserver. To be used with Javascript applications that need a ping.
+webserver and used with Javascript applications that require a ping.
 
 ##Usage
 ```
