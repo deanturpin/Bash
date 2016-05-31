@@ -5,6 +5,8 @@ The design comprises a bash CGI script to execute the actual ping and a an HTML
 file with embedded jQuery to parse an external hosts file, generate the HTML and
 periodically update the CSS depending on the ping result.
 
+![](firefox.png)
+
 ##CGI ping
 The ping is handled via a bash CGI script and must be installed on a webserver within your subnet.
 ```
