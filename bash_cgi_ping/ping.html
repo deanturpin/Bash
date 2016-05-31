@@ -3,13 +3,20 @@
 <head>
 <meta charset='UTF-8'> 
 
-<script src='jquery-2.2.4.min.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
 <script>
 $(document).ready(function(){
 
 		// Array to hold all the valid IPs in the hosts file
 		var IPs = [];
+
+		// Ping each IP in the hosts file
+		function ping(){
+			$.each(IPs, function(index, value){
+				$.ajax('http://localhost/cgi-bin/ping?' + value);
+			});
+		};
 
 		// AJAX complete handler
 		$(document).ajaxComplete(function(event, request, settings) {
@@ -25,34 +32,38 @@ $(document).ready(function(){
 				// Extract the IP from the request
 				var ip = settings.url.split('?').pop();
 
-				$('span:contains(' + ip + ')').css('color', color);
+				// Create an ID to target the span
+				var id = ip.replace(/\./g, '_');
+				$('span#' + id).css('color', color);
 
 			} else {
 
-				// Otherwise it must be the hosts file request
-				// Extract hosts
+				// Otherwise it must be the hosts file request, extract hosts
 				var hosts = request.responseText.split('\n');
 
 				// Iterate through each IP in the hosts file
 				for (var i = 0; i < hosts.length; ++i) {
 
-					// Create a span for each line
-					$('p#hosts').append('<span>' + hosts[i] + '</span><br>');
-
 					// Extract IPs
+					var _ip = 'comment';
 					var ip = RegExp('^[0-9\.]{7,}').exec(hosts[i]);
-					if (ip)
+
+					// If it looks like an IP then store it
+					if (ip) {
 						IPs.push(ip);
+
+						// Create an ID to target the correct span
+						var id = ip[0].replace(/\./g, '_');
+					}
+
+					// Create a span for each line
+					$('p#hosts').append('<span id=' + id + '>' + hosts[i] + '</span><br>');
 				}
+
+				// Initiate ping once the HTML has been populated
+				ping();
 			}
 		});
-
-		// Ping each IP in the hosts file
-		function ping(){
-			$.each(IPs, function(index, value){
-				$.ajax('http://localhost/cgi-bin/ping?' + value);
-			});
-		};
 
 		// Update cycle
 		setInterval(function() {
@@ -63,6 +74,9 @@ $(document).ready(function(){
 		// Create page elements
 		$('body').append('<p id=timestamp>tbc</p>');
 		$('body').append('<p id=hosts></p>');
+
+		// Initialise timestamp
+		$('p#timestamp').text(new Date);
 
 		// Fetch hosts file
 		$.ajax('hosts');
