@@ -51,8 +51,16 @@ sudo vmstat -f # fork
 sudo vmstat -d # disk 
 sudo vmstat -s # stat 
 ```
-
 ## iostat
+observing the time the devices are active  in  relation to their average transfer rates. 
+
 ## sar
+TBD
+
 ## uptime
+Load average is for the last one, five and fifteen minutes.
+```
+ 15:24:44 up 6 days, 20:45,  4 users,  load average: 0.55, 0.87, 0.83
+ ```
+```
 ## ipcs
