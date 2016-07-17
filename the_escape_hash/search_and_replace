@@ -1,3 +1,5 @@
+#!/bin/bash 
+
 echo Search and replace
 sar='abcabcabcabcabc'
 
