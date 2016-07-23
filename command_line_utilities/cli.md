@@ -38,6 +38,9 @@ TBD
 - i - hide idle tasks
 - r 19 - renice to lowest user priority
 
+## iotop
+Show disk accesses
+
 ## dd
 Check progress of `dd` running in the background.
 ```
