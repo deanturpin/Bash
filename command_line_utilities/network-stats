@@ -5,24 +5,33 @@ Content-Type: text/plain
 
 MIME
 
-# Fetch ARP table
+function echo {
+	printf \\n%s\\n "$*"
+}
+
+echo ARP table
 ip neighbour
 
-# Current IP
+echo MAC address
+ip n | while read line; do [[ $line =~ \ [[:xdigit:]:]{17}\  ]] && echo $BASH_REMATCH; done
+
+echo Current IP
 ip=$(hostname -I)
 
-# Current access point
+echo Current access point
 iwgetid
 
-# Routing table
+echo Routing table
 ip route
 
-# Visible access points
+echo Visible access points
 iwlist wlp1s0 scan  | grep ESSID
 
-# Portscan self
+echo Portscan self
 nc -vz $ip 1-10000 |& grep succeeded
 
 # Resolve vendors
 # Ping IPs on current network
-# Ping external IPs
+
+echo Ping external IPs
+ping -w 1 -c 1 8.8.8.8 && echo success || echo fail
