@@ -1,0 +1,28 @@
+#!/bin/bash
+
+cat <<MIME
+Content-Type: text/plain
+
+MIME
+
+# Fetch ARP table
+ip neighbour
+
+# Current IP
+ip=$(hostname -I)
+
+# Current access point
+iwgetid
+
+# Routing table
+ip route
+
+# Visible access points
+iwlist wlp1s0 scan  | grep ESSID
+
+# Portscan self
+nc -vz $ip 1-10000 |& grep succeeded
+
+# Resolve vendors
+# Ping IPs on current network
+# Ping external IPs
