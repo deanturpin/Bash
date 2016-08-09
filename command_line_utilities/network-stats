@@ -26,10 +26,7 @@ function vendor {
 # iwgetid
 
 echo MAC addresses in ARP table
-ip n | while read line; do
-
-	vendor $line
-done
+ip n | while read line; do vendor $line; done
 
 # echo Current IP
 # ip=$(hostname -I)
@@ -38,11 +35,7 @@ done
 # ip route
 
 echo Visible access points
-# iwlist wlp1s0 scan  | grep -E 'ESSID|Address'
-iwlist wlp1s0 scan | while read line; do
-	
-	vendor $line
-done
+iwlist wlp1s0 scan | while read line; do vendor $line; done
 
 # echo Portscan self
 # nc -vz $ip 1-10000 |& grep succeeded
