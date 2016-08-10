@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cat <<MIME
+Content-Type: text/plain
+
+MIME
+
+echo ${QUERY_STRING-What shall I watch?}
+
