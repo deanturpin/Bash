@@ -1,10 +1,5 @@
 #!/bin/bash
 
-cat <<MIME
-Content-Type: text/plain
-
-MIME
-
 # Look up vendor from first half of MAC
 function vendor {
 
@@ -18,7 +13,12 @@ function vendor {
 
 		# Look up MAC
 		v=${mac:0:6}
-		grep -i $v oui.txt || echo no match
+		vend=$(grep -i $v oui.txt)
+		if [[ $vend != '' ]]; then
+			echo ${vend##)}
+		else
+			echo no match
+		fi
 	fi
 }
 
@@ -29,15 +29,15 @@ function header {
 header Current access point
 iwgetid
 
-external_ip=8.8.8.8
-header Ping external IP $external_ip
-ping -w 1 -c 1 $external_ip >& /dev/null && echo success || echo fail
+external=8.8.8.8
+header Ping $external
+ping -w 1 -c 1 $external >& /dev/null && echo success || echo fail
 
-header nMAC/vendor on current subnet
+header MAC/vendor on current subnet
 ip n | while read line; do vendor $line; done
 
-# echo Current IP
-# ip=$(hostname -I)
+header My IPs
+ip=$(hostname -I)
 
 # echo $'\nMAC/vendor for my NICs'
 # ip address | while read line; do
@@ -60,5 +60,3 @@ nc -vz $ip 1-10000 |& grep succeeded
 
 header TCP dump
 tcpdump | head
-
-# Ping IPs on current network
