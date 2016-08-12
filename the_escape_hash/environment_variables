@@ -1,9 +1,0 @@
-#!/bin/bash
-
-# Current dir
-echo ~+
-
-# Previous dir
-echo ~-
-
-echo bash version $BASH_VERSION
